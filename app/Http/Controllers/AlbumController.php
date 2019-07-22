@@ -25,7 +25,6 @@ class AlbumController extends Controller
     public function create()
     {
         return view('album.create');
-    
     }
 
     /**
@@ -41,9 +40,6 @@ class AlbumController extends Controller
 
         $albums = new Album;
         $albums->createAlbum($request);
-        // $albums->title = $request->name;
-        // $albums->user_id = 1;
-        // $albums->save();
     }
 
     /**
