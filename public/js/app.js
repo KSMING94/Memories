@@ -1722,33 +1722,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       image: '',
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
     };
-  },
-  methods: {
-    createImage: function createImage(file) {
-      var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
-
-      reader.onload = function (e) {
-        vm.image = e.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    },
-    onFileChange: function onFileChange(e) {
-      var files = e.target.files;
-      if (!files.length) return;
-      this.createImage(files[0]);
-    },
-    removeImage: function removeImage(e) {
-      this.image = '';
-    }
   }
 });
 
@@ -1785,7 +1766,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#app {\r\n    text-align: center;\n}\nimg {\r\n    width: 30%;\r\n    margin: auto;\r\n    display: block;\r\n    margin-bottom: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\n#app {\r\n    /* text-align: center; */\n}\r\n", ""]);
 
 // exports
 
@@ -20040,61 +20021,71 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-container",
+    "v-form",
+    {
+      attrs: {
+        action: "/albums",
+        method: "post",
+        enctype: "multipart/form-data"
+      }
+    },
     [
       _c(
-        "v-layout",
-        { attrs: { row: "", wrap: "" } },
+        "v-container",
+        { attrs: { "grid-list-md": "" } },
         [
-          _c("v-flex", { attrs: { xs12: "" } }, [
-            _c(
-              "form",
-              {
-                attrs: {
-                  action: "/albums",
-                  method: "post",
-                  enctype: "multipart/form-data"
-                }
-              },
-              [
-                _c("input", {
-                  attrs: { type: "hidden", name: "_token" },
-                  domProps: { value: _vm.csrf }
-                }),
-                _vm._v(" "),
-                _c("label", { attrs: { for: "name" } }, [_vm._v("이름")]),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "text", name: "name", placeholder: "입력해" }
-                }),
-                _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "", wrap: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs6: "" } },
+                [
+                  _c("input", {
+                    attrs: { type: "hidden", name: "_token" },
+                    domProps: { value: _vm.csrf }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "name" } }, [_vm._v("앨범명")]),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      id: "name",
+                      solo: "",
+                      name: "name",
+                      placeholder: "앨범명을 입력해주세요"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "desc" } }, [_vm._v("내용")]),
+                  _vm._v(" "),
+                  _c("v-textarea", {
+                    attrs: {
+                      id: "desc",
+                      solo: "",
+                      name: "desc",
+                      label: "내용을 입력해주세요"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-flex", { attrs: { xs6: "" } }, [
                 _c("div", { attrs: { id: "app" } }, [
-                  !_vm.image
-                    ? _c("div", [
-                        _c("h2", [_vm._v("Select image")]),
-                        _vm._v(" "),
-                        _c("input", {
-                          attrs: {
-                            type: "file",
-                            id: "file",
-                            name: "imageFile"
-                          },
-                          on: { change: _vm.onFileChange }
-                        })
-                      ])
-                    : _c("div", [
-                        _c("img", { attrs: { src: _vm.image } }),
-                        _vm._v(" "),
-                        _c("button", { on: { click: _vm.removeImage } }, [
-                          _vm._v("Remove image")
-                        ])
-                      ]),
+                  _c("h2", [_vm._v("Select image")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    attrs: { type: "file", id: "file", name: "imageFile" }
+                  }),
                   _vm._v(" "),
                   _c("input", { attrs: { type: "submit", value: "입력 완료" } })
                 ])
-              ]
-            )
-          ])
+              ])
+            ],
+            1
+          )
         ],
         1
       )

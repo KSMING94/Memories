@@ -14,7 +14,7 @@
         </style>
     </head>
     <body>
-        <v-app>
+        <v-app id="app">
             <form-album/>
         </v-app>
 

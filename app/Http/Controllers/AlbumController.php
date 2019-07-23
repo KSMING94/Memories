@@ -35,9 +35,7 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $file = $request->file('imageFile');
-
+        \Log::debug($request);
         $albums = new Album;
         $albums->createAlbum($request);
     }
