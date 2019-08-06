@@ -8,10 +8,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import Vuetify from 'vuetify'
-Vue.use(Vuetify)
+import Vuetify from 'vuetify';
+const vuetifyOptions = { }
+Vue.use(Vuetify);
 
-import 'vuetify/dist/vuetify.min.css' // Ensure you are using css-loader
+
+import 'vuetify/dist/vuetify.min.css' ;// Ensure you are using css-loader
+import VueRouter from 'vue-router';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 /**
  * The following block of code may be used to automatically register your
@@ -34,4 +38,5 @@ Vue.component('form-album', require('./components/FormAlbum.vue').default);
 
 const app = new Vue({
     el: '#app',
+    vuetify: new Vuetify(vuetifyOptions)
 });
